@@ -29,3 +29,12 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceProduct=CPH2745 \
     SystemDevice=OP611FL1 \
     SystemName=CPH2745
+
+# v9 eng-grade adb (build as -userdebug; LineageOS has no -eng lunch combo for this device).
+# Gives unauthenticated adb (no RSA prompt) + adbd running as root by default, so the cold-boot
+# frida A/B (NEXT-SESSION-build-and-AB.md) needs no `adb root`/KernelSU `su -c` dance.
+# REMOVE these for any user-facing/secure ship build.
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.adb.secure=0 \
+    ro.secure=0 \
+    persist.sys.usb.config=adb
