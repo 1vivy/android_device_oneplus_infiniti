@@ -88,3 +88,7 @@ $(call inherit-product, vendor/oneplus/infiniti/infiniti-vendor.mk)
 
 # Camera (Oplus camera port — dodge proof-of-form)
 $(call inherit-product-if-exists, vendor/oplus/camera/opluscamera.mk)
+
+# Device is 4K-pages (kernel CONFIG_ARM64_4K_PAGES=y); declare it so check_elf_file
+# does not require the 16K-readiness alignment that older 4K OEM camera JNI libs lack.
+PRODUCT_MAX_PAGE_SIZE_SUPPORTED := 4096
