@@ -17,10 +17,10 @@
 //     JUMP_SLOT in libAlgoInterface so our wrapper is what gets stored in the engine struct.
 //
 // Loaded into com.oplus.camera as a DT_NEEDED of /odm/lib64/libAlgoProcess.so. Offsets are
-// pinned to the infiniti (OnePlus 15, SM8850, OOS 16.0.7.201) blobs, re-anchored from dodge via
+// pinned to the infiniti (OnePlus 15, SM8850, OOS 16.0.8.300) blobs, re-anchored via
 // readelf JUMP_SLOT offsets (host static analysis; no runtime/frida discovery needed):
-//   libAlgoProcess.so    BuildId 82fe443b..  p010LSB2MSBNeon @ +0x4fc094, its GOT slot @ +0x689ba8
-//   libAlgoInterface.so  BuildId ce6e40ca..  dlsym GOT slot @ +0x1bb67c8
+//   libAlgoProcess.so    BuildId 2217d555..  p010LSB2MSBNeon @ +0x4fc25c, its GOT slot @ +0x689ba8
+//   libAlgoInterface.so  BuildId f76a8818..  dlsym GOT slot @ +0x1bb67c8
 // A runtime NT_GNU_BUILD_ID check (build_id_matches) gates application — fail-safe across an OOS OTA
 // (if the blob changes, the offsets are stale, so we refuse to redirect rather than crash).
 //
@@ -39,13 +39,14 @@
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, TAG, __VA_ARGS__)
 #define LOGW(...) __android_log_print(ANDROID_LOG_WARN, TAG, __VA_ARGS__)
 
-// infiniti (SM8850, OOS 16.0.7.201) — re-anchored from dodge via readelf R_AARCH64_JUMP_SLOT offsets.
-static const uintptr_t P010_FUNC_OFF = 0x4fc094;   // p010LSB2MSBNeon (_ZN22APSFormatConverterNeon15p010LSB2MSBNeonEPtS0_jjjj)
-static const uintptr_t P010_GOT_OFF  = 0x689ba8;   // its JUMP_SLOT GOT entry in libAlgoProcess
-static const uintptr_t DLSYM_GOT_OFF = 0x1bb67c8;  // dlsym@LIBC JUMP_SLOT GOT entry in libAlgoInterface
+// infiniti (SM8850, OOS 16.0.8.300) — re-anchored from the .300 blobs via readelf R_AARCH64_JUMP_SLOT offsets.
+// v1.3 bump from .201: only the p010 FUNC vaddr moved (0x4fc094->0x4fc25c); both GOT slots are stable; both BuildIds changed.
+static const uintptr_t P010_FUNC_OFF = 0x4fc25c;   // p010LSB2MSBNeon (_ZN22APSFormatConverterNeon15p010LSB2MSBNeonEPtS0_jjjj)
+static const uintptr_t P010_GOT_OFF  = 0x689ba8;   // its JUMP_SLOT GOT entry in libAlgoProcess (unchanged .201->.300)
+static const uintptr_t DLSYM_GOT_OFF = 0x1bb67c8;  // dlsym@LIBC JUMP_SLOT GOT entry in libAlgoInterface (unchanged .201->.300)
 // BuildId guard: only apply if the loaded blob matches what these offsets were anchored against.
-static const char* EXPECT_ALGOPROC_BUILDID  = "82fe443b408f8ed027558b0d4ffb1500";
-static const char* EXPECT_ALGOIFACE_BUILDID = "ce6e40ca2e987fcc6da26930d84b0b2f";
+static const char* EXPECT_ALGOPROC_BUILDID  = "2217d555bacb9e8f9c2a81a609ca9f47";
+static const char* EXPECT_ALGOIFACE_BUILDID = "f76a88188a00589db385183c025443fb";
 
 static inline bool is_buf(uint64_t v)     { uint32_t hi=(uint32_t)(v>>32); return hi>=0x70 && hi<=0x7f && (uint32_t)v >= 0x100000u; }
 static inline bool is_garbage(uint64_t v) { uint32_t hi=(uint32_t)(v>>32); return hi>=0x70 && hi<=0x7f && (uint32_t)v <  0x100000u; }
