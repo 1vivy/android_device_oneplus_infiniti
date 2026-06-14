@@ -37,3 +37,6 @@ TARGET_RECOVERY_UI_MARGIN_HEIGHT := 103
 
 # Include the proprietary files BoardConfig.
 include vendor/oneplus/infiniti/BoardConfigVendor.mk
+
+# Camera (Oplus camera port) — OEM camera sets vendor props outside the standard namespace
+BUILD_BROKEN_VENDOR_PROPERTY_NAMESPACE := true

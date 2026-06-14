@@ -1861,3 +1861,7 @@ odm/etc/wifi/peach/bdwlan.elf
 odm/etc/wifi/peach/regdb.bin
 odm/etc/wifi/peach/regdb_version
 odm/vendor/etc/wifi/WCNSS_qcom_cfg.ini
+
+# Camera (Oplus camera port — dodge proof-of-form): stock libutils/libui ABI for libsharebuffer_impl
+vendor/lib64/libutils.so:vendor/lib64/libutils-stock.so;FIX_SONAME
+vendor/lib64/libui.so:vendor/lib64/libui-stock.so;FIX_SONAME
