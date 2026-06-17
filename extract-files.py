@@ -72,6 +72,14 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V7-ndk.so')
         # DT_NEEDED our P010 interposer so it loads into com.oplus.camera with libAlgoProcess (auto-pulls libapsfixup into the build)
         .add_needed('libapsfixup.so'),
+    # Dodge proof-of-form: Master/Pro mode routes through libBasicTonePhoto's OCCE tone-mapper.
+    # The embedded GLSL swaps Cb/Cr once too many on LOS, producing R/B-swapped output. Undo the
+    # reorder in-place with the same length-preserving fixup used by dodge.
+    'odm/lib64/libBasicTonePhoto.so': blob_fixup()
+        .binary_regex_replace(
+            b'vec4\\(dstYuv\\.r, dstYuv\\.b, dstYuv\\.g, 1\\.0\\)',
+            b'vec4(dstYuv.r, dstYuv.g, dstYuv.b, 1.0)',
+        ),
     'odm/lib64/liboprec_audrec.so': blob_fixup()
         .replace_needed('libstdc++.so', 'libstdc++_vendor.so'),
     'vendor/etc/libnfc-nci.conf': blob_fixup()
