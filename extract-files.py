@@ -69,9 +69,11 @@ blob_fixups: blob_fixups_user_type = {
         .clear_symbol_version('AHardwareBuffer_release')
         .clear_symbol_version('AHardwareBuffer_unlock'),
     'odm/lib64/libAlgoProcess.so': blob_fixup()
-        .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V7-ndk.so')
-        # DT_NEEDED our P010 interposer so it loads into com.oplus.camera with libAlgoProcess (auto-pulls libapsfixup into the build)
-        .add_needed('libapsfixup.so'),
+        # v2.0: libapsfixup DROPPED. P010 fixed at root (framework formatIsYuv recognizes
+        # P010_VENUS 0x7FA30C0A -> born-correct descriptor). No DT_NEEDED interposer; an
+        # obvious crash beats a masked one for stack-format verification.
+        # See docs/re-notes/formatisyuv-p010-framework-root-RE.md.
+        .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
     # Dodge proof-of-form: Master/Pro mode routes through libBasicTonePhoto's OCCE tone-mapper.
     # The embedded GLSL swaps Cb/Cr once too many on LOS, producing R/B-swapped output. Undo the
     # reorder in-place with the same length-preserving fixup used by dodge.
