@@ -1090,6 +1090,11 @@ odm/lib64/libremosaic_wrapper.so
 odm/lib64/libremosaiclib.so
 odm/lib64/libsat.so
 odm/lib64/libsaveshaderbin.so
+
+# v2.3 camera: rear-bokeh AI human-seg engine (1a) + OCCE shader-cache precompiler service (1b)
+odm/bin/occe_create
+odm/etc/init/occe_create.rc
+odm/lib64/libAncHumanSegFigureFusion.so
 odm/lib64/libsharebuffer.so
 odm/lib64/libsharebuffer_impl.so
 odm/lib64/libssd_det.so
