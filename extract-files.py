@@ -60,6 +60,7 @@ blob_fixups: blob_fixups_user_type = {
         'odm/lib64/libOPAlgoCamAiUnifySkin.so',
         'odm/lib64/libOPAlgoCamFaceBeautyCap.so',
         'odm/lib64/libaiboost_te.so',
+        'odm/lib64/libAncHumanSegFigureFusion.so',
     ): blob_fixup()
         .clear_symbol_version('AHardwareBuffer_acquire')
         .clear_symbol_version('AHardwareBuffer_allocate')
