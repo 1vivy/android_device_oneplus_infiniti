@@ -1969,6 +1969,16 @@ odm/etc/sensor/config/oplus_rotation_detect.json
 odm/etc/sensor/config/oplus_rotv.json
 odm/etc/sensor/sensor_config.json
 
+# Display config
+my_product/etc/oplus_vrr_config.json
+my_product/etc/refresh_rate_config.xml
+my_product/etc/sys_background_vsync_config.xml
+my_product/etc/sys_dynamic_frame_config.xml
+my_product/vendor/etc/display_brightness_config_P_3.xml
+my_product/vendor/etc/display_brightness_config_P_7.xml
+my_product/vendor/etc/multimedia_display_adfr2minfps_config.xml
+my_product/vendor/etc/multimedia_display_brightness_config.xml
+
 # Touchscreen firmware
 odm/firmware/tp/infiniti/GloveDetect.tflite
 odm/firmware/tp/infiniti/libafe_s3910.so
