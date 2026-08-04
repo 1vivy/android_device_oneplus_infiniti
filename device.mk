@@ -23,6 +23,9 @@ TARGET_SCREEN_HEIGHT := 2772
 TARGET_SCREEN_WIDTH := 1272
 
 # Display
+PRODUCT_PACKAGES += \
+    OplusLtpo
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/display/displaypanelfeature_publisher.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display/displaypanelfeature_publisher.xml \
     $(LOCAL_PATH)/configs/display/multimedia_display_adfr2minfps_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display/multimedia_display_adfr2minfps_config.xml \
