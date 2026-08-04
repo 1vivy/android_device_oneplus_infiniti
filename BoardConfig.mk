@@ -40,6 +40,8 @@ BOARD_BOOTCONFIG += androidboot.selinux=permissive
 
 # Sepolicy
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 
 # Include the proprietary files BoardConfig.
 include vendor/oneplus/infiniti/BoardConfigVendor.mk
