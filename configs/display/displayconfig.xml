@@ -23,5 +23,26 @@
         <timeMaxSecs>300</timeMaxSecs>         // Maximum time of HBM allowed in that window.
         <timeMinSecs>60</timeMinSecs>          // Minimum time remaining required to switch
         </timing>                              //   HBM on for.
+        <sdrHdrRatioMap>
+        <point>
+        <sdrNits>2.000</sdrNits>
+        <hdrRatio>8.000</hdrRatio>
+        </point>
+        <point>
+        <sdrNits>500.000</sdrNits>
+        <hdrRatio>1.5</hdrRatio>
+        </point>
+        </sdrHdrRatioMap>
+        
     </highBrightnessMode>
+
+    <!-- Brightness ramp rates, from the stock panel configuration. AOSP defaults
+         (fast 1.0, slow 0.193, unbounded duration) step far harder than this
+         panel is tuned for, which is what makes auto-brightness feel jumpy. -->
+    <screenBrightnessRampFastDecrease>0.06</screenBrightnessRampFastDecrease>
+    <screenBrightnessRampFastIncrease>0.06</screenBrightnessRampFastIncrease>
+    <screenBrightnessRampSlowDecrease>0.04</screenBrightnessRampSlowDecrease>
+    <screenBrightnessRampSlowIncrease>0.04</screenBrightnessRampSlowIncrease>
+    <screenBrightnessRampIncreaseMaxMillis>3000</screenBrightnessRampIncreaseMaxMillis>
+    <screenBrightnessRampDecreaseMaxMillis>3000</screenBrightnessRampDecreaseMaxMillis>
 </displayConfiguration>
