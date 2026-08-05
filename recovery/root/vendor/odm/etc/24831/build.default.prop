@@ -6,3 +6,11 @@ ro.vendor.oplus.regionmark=CN
 
 # NFC
 persist.vendor.nfc.config_file_name=libnfc-mtp-SN220.conf_24831
+
+# Widevine
+# Provisioning 4.0 is a global-firmware setting: stock enables it from odm/build.prop
+# on the global SKUs (CPH2745 prjname 24863, CPH2767 prjname 24877) and leaves it unset
+# on the China SKUs (PLZ110 prjname 25821, PLR110 prjname 24855). A China unit converted
+# to global firmware therefore has prov40 forced on against a keybox provisioned for the
+# earlier model. Keep the provisioning model with the hardware project, not the build.
+vendor.wv.oemcrypto.debug.enable_prov40=false
