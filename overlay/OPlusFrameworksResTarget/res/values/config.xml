@@ -177,56 +177,6 @@
          This array should be equal in size to config_screenBrightnessBacklight. -->
     <integer-array name="config_screenBrightnessBacklight">
         <item>1</item>
-        <item>5</item>
-        <item>10</item>
-        <item>15</item>
-        <item>20</item>
-        <item>25</item>
-        <item>30</item>
-        <item>35</item>
-        <item>40</item>
-        <item>45</item>
-        <item>50</item>
-        <item>55</item>
-        <item>60</item>
-        <item>65</item>
-        <item>70</item>
-        <item>75</item>
-        <item>80</item>
-        <item>85</item>
-        <item>90</item>
-        <item>95</item>
-        <item>100</item>
-        <item>105</item>
-        <item>110</item>
-        <item>115</item>
-        <item>120</item>
-        <item>125</item>
-        <item>130</item>
-        <item>135</item>
-        <item>140</item>
-        <item>145</item>
-        <item>150</item>
-        <item>155</item>
-        <item>160</item>
-        <item>165</item>
-        <item>170</item>
-        <item>175</item>
-        <item>180</item>
-        <item>185</item>
-        <item>190</item>
-        <item>195</item>
-        <item>200</item>
-        <item>205</item>
-        <item>210</item>
-        <item>215</item>
-        <item>220</item>
-        <item>225</item>
-        <item>230</item>
-        <item>235</item>
-        <item>240</item>
-        <item>245</item>
-        <item>250</item>
         <item>255</item>
     </integer-array>
 
@@ -238,58 +188,8 @@
 
          This array should be equal in size to config_screenBrightnessBacklight -->
     <array name="config_screenBrightnessNits">
-        <item>0.2289</item>
-        <item>4.4509</item>
-        <item>6.8769</item>
-        <item>11.6512</item>
-        <item>18.5109</item>
-        <item>27.5286</item>
-        <item>38.3354</item>
-        <item>49.5442</item>
-        <item>64.2686</item>
-        <item>81.6825</item>
-        <item>99.8549</item>
-        <item>117.9603</item>
-        <item>132.6605</item>
-        <item>153.7292</item>
-        <item>177.8811</item>
-        <item>203.9206</item>
-        <item>232.8468</item>
-        <item>265.5024</item>
-        <item>300.7833</item>
-        <item>339.1603</item>
-        <item>379.3092</item>
-        <item>422.9130</item>
-        <item>467.6717</item>
-        <item>515.9362</item>
-        <item>567.4022</item>
-        <item>621.2638</item>
-        <item>652.9980</item>
-        <item>657.4003</item>
-        <item>663.0907</item>
-        <item>666.9472</item>
-        <item>672.5456</item>
-        <item>677.9654</item>
-        <item>682.5966</item>
-        <item>687.7337</item>
-        <item>691.9226</item>
-        <item>697.3131</item>
-        <item>701.3130</item>
-        <item>707.0514</item>
-        <item>712.5063</item>
-        <item>718.2969</item>
-        <item>723.9837</item>
-        <item>728.3262</item>
-        <item>734.2028</item>
-        <item>739.4332</item>
-        <item>744.2439</item>
-        <item>750.5568</item>
-        <item>755.1467</item>
-        <item>760.6885</item>
-        <item>766.5874</item>
-        <item>770.8062</item>
-        <item>776.6059</item>
-        <item>782.4283</item>
+        <item>2</item>
+        <item>800</item>
     </array>
 
     <!-- Array of ambient lux threshold values. This is used for determining hysteresis constraint
