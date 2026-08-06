@@ -94,8 +94,8 @@ odm/etc/audio/oprec_audrec_params/oprec_record_calibration.bin
 # common-side declaration leaves those two deps unresolvable at soong analysis.
 odm/etc/audio_effects_config.xml
 odm/lib64/liboplus_audiox.so
-odm/lib64/soundfx/libOplusAudioxAidl.so
-odm/lib64/soundfx/libOplusSpatializerAidl.so
+odm/lib64/soundfx/libOplusAudioxAidl.so;DISABLE_CHECKELF
+odm/lib64/soundfx/libOplusSpatializerAidl.so;DISABLE_CHECKELF
 odm/lib64/soundfx/liboplusupmixeffect.so
 
 # Audio spatializer room models
