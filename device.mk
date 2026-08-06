@@ -29,6 +29,7 @@ PRODUCT_PACKAGES += \
     android.hardware.weaver-service.nxp
 
 # LiveDisplay
+$(call soong_config_set_bool,OPLUS_LINEAGE_LIVEDISPLAY_HAL,ENABLE_DC,true)
 $(call soong_config_set_bool,OPLUS_LINEAGE_LIVEDISPLAY_HAL,ENABLE_SE,false)
 
 # Overlays
