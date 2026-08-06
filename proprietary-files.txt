@@ -1,6 +1,11 @@
 ## All proprietary files from this list, unless pinned and noted otherwise,
 ## are from OnePlus 15 (CPH2745_16.0.9.400(EX01)).
 
+# ConsumerIr AIDL service (declared; extraction is Task 23)
+odm/bin/hw/android.hardware.ir-service
+odm/etc/init/android.hardware.ir-service.rc
+odm/etc/vintf/manifest/android.hardware.ir-service.xml
+
 # ACDB
 odm/etc/acdbdata/FTM/acdb_cal.acdb
 odm/etc/acdbdata/Audio_Parameter_Version.txt
