@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Oplus exposes a binary wakeup AOD lux sensor: 0 = low light, 1 = bright light.
+         Its switch points live in the vendor sensor configuration, not here:
+         odm/etc/sensor/config/lux_aod.json sets thrd-low 12 / thrd-high 50, one
+         hysteresis boundary, hence the two entries in each table below. -->
+    <string name="doze_brightness_sensor_type" translatable="false">qti.sensor.lux_aod</string>
+
+    <integer-array name="config_doze_brightness_sensor_to_brightness">
+        <item>8</item>
+        <item>60</item>
+    </integer-array>
+
+    <integer-array name="config_doze_brightness_sensor_to_scrim_opacity">
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+
+    <integer-array name="config_doze_brightness_sensor_to_wallpaper_scrim_opacity">
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+</resources>
