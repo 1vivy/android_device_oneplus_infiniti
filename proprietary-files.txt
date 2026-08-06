@@ -422,6 +422,11 @@ odm/etc/camera/filters_lut/B1VLf4peM
 odm/etc/camera/filters_lut/B1aMqioxf
 odm/etc/camera/filters_lut/B1nmcmWbG
 odm/etc/camera/filters_lut/B1si_XbZz
+# Display color-management backing data
+odm/etc/display/qdcm_calib_data_AD296_P_3_A0020_dsc_cmd_mode_panel.json
+odm/etc/display/qdcm_calib_data_AA601_P_7_A0020_dsc_cmd_mode_panel.json
+odm/etc/hdr3dlut_pq_qcom_grid_out_rgb.cube
+
 odm/etc/camera/filters_lut/B612Pretty.cube.rgb.bin
 odm/etc/camera/filters_lut/BJJAwoigM
 odm/etc/camera/filters_lut/BJyKIwqxz
