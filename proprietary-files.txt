@@ -1,10 +1,10 @@
 ## All proprietary files from this list, unless pinned and noted otherwise,
 ## are from OnePlus 15 (CPH2745_16.0.9.400(EX01)).
 
-# ConsumerIr AIDL service (declared; extraction is Task 23)
-odm/bin/hw/android.hardware.ir-service
-odm/etc/init/android.hardware.ir-service.rc
-odm/etc/vintf/manifest/android.hardware.ir-service.xml
+# ConsumerIr is served from source by android.hardware.ir-service.oplus
+# (hardware/oplus/aidl/ir, pulled in by sm8850-common/common.mk). The stock ODM
+# service is deliberately NOT declared: two providers of
+# android.hardware.ir/IConsumerIr/default is a VINTF conflict, and the open one wins.
 
 # ACDB
 odm/etc/acdbdata/FTM/acdb_cal.acdb
