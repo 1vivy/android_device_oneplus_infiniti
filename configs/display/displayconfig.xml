@@ -24,4 +24,6 @@
         <timeMinSecs>60</timeMinSecs>          // Minimum time remaining required to switch
         </timing>                              //   HBM on for.
     </highBrightnessMode>
+
+    <supportsVrr>true</supportsVrr>
 </displayConfiguration>
