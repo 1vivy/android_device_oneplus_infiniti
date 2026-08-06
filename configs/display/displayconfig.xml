@@ -256,4 +256,6 @@
     <screenBrightnessRampSlowIncrease>0.04</screenBrightnessRampSlowIncrease>
     <screenBrightnessRampIncreaseMaxMillis>3000</screenBrightnessRampIncreaseMaxMillis>
     <screenBrightnessRampDecreaseMaxMillis>3000</screenBrightnessRampDecreaseMaxMillis>
+
+    <supportsVrr>true</supportsVrr>
 </displayConfiguration>
