@@ -89,6 +89,21 @@ odm/etc/audio/oprec_audrec_params/oprec_record_ID99_Bypass.bin
 odm/etc/audio/oprec_audrec_params/oprec_record_ID9_HE.bin
 odm/etc/audio/oprec_audrec_params/oprec_record_calibration.bin
 
+# Audio spatializer engine
+# EffectsConfig searches /odm/etc before /vendor/etc, and the stock build ships no
+# /vendor/etc/audio_effects_config.xml at all - this ODM registry is the one audioserver
+# loads, and the only place the AOSP spatializer UUID is registered. It maps
+# de4d6aaf-4e9d-473d-8168-4ce92d50a637 onto libOplusSpatializerAidl.so.
+# Declared per-device rather than in sm8850-common because liboplus_audiox links
+# odm/lib64/libMNN.so and both soundfx factories link odm/lib64/libc++_shared.so - both
+# declared in this file. The common blob namespace does not import this one, so a
+# common-side declaration leaves those two deps unresolvable at soong analysis.
+odm/etc/audio_effects_config.xml
+odm/lib64/liboplus_audiox.so
+odm/lib64/soundfx/libOplusAudioxAidl.so
+odm/lib64/soundfx/libOplusSpatializerAidl.so
+odm/lib64/soundfx/liboplusupmixeffect.so
+
 # Audio spatializer room models
 odm/etc/oplusmetaaudio/HP_MOVIE_ANALOG.bin
 odm/etc/oplusmetaaudio/HP_MOVIE_BLUETOOTH.bin
