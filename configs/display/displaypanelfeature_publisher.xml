@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Only high-confidence, complete feature chains from F5-PRE are represented.
+  Property-backed controls are inert until a value with the declared shape is set.
+-->
+<displayPanelFeatures>
+    <feature id="4" direction="both" payload="scalar" source="property" property="persist.vendor.displaypanel.seed" />
+    <feature id="12" direction="both" payload="scalar" source="property" property="persist.vendor.displaypanel.hbm" />
+    <feature id="35" direction="set" payload="pair" source="property" property="persist.vendor.displaypanel.pq_mode" />
+    <feature id="80" direction="set" payload="scalar" source="property" property="persist.vendor.displaypanel.svi" />
+    <feature id="81" direction="set" payload="scalar" source="property" property="persist.vendor.displaypanel.ltm_auto" />
+    <feature id="184" direction="both" payload="scalar" source="property" property="persist.vendor.displaypanel.cabc" />
+    <feature id="185" direction="both" payload="scalar" source="property" property="persist.vendor.displaypanel.dre" />
+    <feature id="194" direction="both" payload="scalar" source="property" property="persist.vendor.displaypanel.dynamic_te" />
+    <feature id="195" direction="both" payload="scalar" source="property" property="persist.vendor.displaypanel.ulp_aod" />
+    <feature id="199" direction="both" payload="scalar" source="property" property="persist.vendor.displaypanel.pwm_turbo" />
+    <feature id="200" direction="get" payload="probe" source="support-probe" />
+    <feature id="201" direction="both" payload="scalar" source="property" property="persist.vendor.displaypanel.pwm_pulse" />
+    <feature id="213" direction="both" payload="scalar" source="property" property="persist.vendor.displaypanel.fake_aod" />
+    <feature id="216" direction="both" payload="scalar" source="property" property="persist.vendor.displaypanel.hbm_max" />
+    <feature id="217" direction="both" payload="scalar" source="property" property="persist.vendor.displaypanel.longrui_aod" />
+    <feature id="228" direction="set" payload="scalar" source="property" property="persist.vendor.displaypanel.dark_eye" />
+    <feature id="232" direction="set" payload="adfr-control" source="adfr-xml" />
+    <feature id="233" direction="get" payload="probe" source="support-probe" />
+    <feature id="234" direction="set" payload="adfr-config" source="adfr-xml" />
+    <feature id="249" direction="set" payload="scalar" source="property" property="persist.vendor.displaypanel.reduce_white_point" />
+    <feature id="260" direction="both" payload="scalar" source="property" property="persist.vendor.displaypanel.dynamic_float_te" />
+</displayPanelFeatures>
