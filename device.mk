@@ -38,7 +38,6 @@ PRODUCT_PACKAGES += \
 
 $(call soong_config_set,oplus_health,battery_state_of_health_path,/sys/class/oplus_chg/battery/battery_ui_soh)
 $(call soong_config_set,oplus_health,battery_cycle_count_path,/sys/class/oplus_chg/battery/battery_ui_cc)
-$(call soong_config_set,oplus_health,battery_first_usage_date_path,/sys/class/oplus_chg/battery/battery_first_usage_date)
 
 # Key handler
 PRODUCT_PACKAGES += \
