@@ -3,4 +3,4 @@ import /odm/etc/${ro.boot.prjname}/build.default.prop
 ro.product.property_source_order=odm,vendor,product,system_ext,system
 
 # GameSpace Performance Overlay
-# FPS meter: /sys/class/drm/sde-crtc-0/measured_fps (sm8850 path, not sm8750 'card0-' variant)
+# FPS meter: SystemUI uses the live card0-sde-crtc-0 node through the device RRO.
