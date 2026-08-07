@@ -24,9 +24,13 @@ TARGET_SCREEN_WIDTH := 1272
 
 # Display
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/display/displaypanelfeature_publisher.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display/displaypanelfeature_publisher.xml \
     $(LOCAL_PATH)/configs/display/multimedia_display_adfr2minfps_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display/multimedia_display_adfr2minfps_config.xml \
     $(LOCAL_PATH)/configs/display/displayconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4630946903293830803.xml \
     $(LOCAL_PATH)/configs/display/displayconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4630946982335253651.xml
+
+PRODUCT_PACKAGES += \
+    displaypanelfeature-publisher
 
 # Health
 PRODUCT_PACKAGES += \
