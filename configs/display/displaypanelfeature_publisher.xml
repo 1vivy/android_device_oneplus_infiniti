@@ -23,6 +23,8 @@
     <feature id="232" direction="set" payload="adfr-control" source="adfr-xml" />
     <feature id="233" direction="get" payload="probe" source="support-probe" />
     <feature id="234" direction="set" payload="adfr-config" source="adfr-xml" />
+    <feature id="239" direction="get" payload="probe" source="support-probe" />
+    <feature id="240" direction="get" payload="probe" source="support-probe" />
     <feature id="249" direction="set" payload="scalar" source="property" property="persist.vendor.displaypanel.reduce_white_point" />
     <feature id="260" direction="both" payload="scalar" source="property" property="persist.vendor.displaypanel.dynamic_float_te" />
 </displayPanelFeatures>
