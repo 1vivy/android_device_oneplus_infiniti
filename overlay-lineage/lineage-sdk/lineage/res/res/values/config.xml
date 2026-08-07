@@ -18,14 +18,4 @@
 
     <!-- Whether the device supports wireless charging or not -->
     <bool name="config_deviceSupportsWirelessCharging">true</bool>
-
-    <!-- Route the Plus Key (scancode 735) through the Oplus KeyHandler so its
-         action is user-selectable instead of fixed at ASSIST by the keylayout. -->
-    <string-array name="config_deviceKeyHandlerLibs">
-        <item>/system_ext/app/KeyHandler/KeyHandler.apk</item>
-    </string-array>
-
-    <string-array name="config_deviceKeyHandlerClasses">
-        <item>org.lineageos.settings.device.KeyHandler</item>
-    </string-array>
 </resources>
