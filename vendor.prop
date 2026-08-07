@@ -2,7 +2,6 @@
 bluetooth.device.default_name=OnePlus 15
 
 # Display
-ro.vendor.display.oplus_adfr_modes=60,90,120
 vendor.display.enable_spr_bypass=0
 vendor.display.enable_spr=1
 
