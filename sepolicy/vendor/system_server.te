@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+
+# BatteryService#isOemCharger() reads the oplus_chg fast-charge status
+# attributes from system_server to pick the VOOC keyguard indication.
+allow system_server vendor_sysfs_oplus_chg:file { getattr open read };

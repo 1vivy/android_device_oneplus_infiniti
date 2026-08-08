@@ -53,7 +53,8 @@ odm/etc/mixer_paths.xml
 odm/etc/resourcemanager.xml
 odm/etc/usecaseKvManager.xml
 
-# Audio firmware
+# TFA98xx audio firmware (dual channels at I2C 0-0034 and 0-0035)
+odm/etc/oplus_ftm_smart_pa.wav
 odm/firmware/tfa98xx.cnt
 
 # Audio params
@@ -82,6 +83,65 @@ odm/etc/audio/oprec_audrec_params/oprec_record_ID8_Fast.bin
 odm/etc/audio/oprec_audrec_params/oprec_record_ID99_Bypass.bin
 odm/etc/audio/oprec_audrec_params/oprec_record_ID9_HE.bin
 odm/etc/audio/oprec_audrec_params/oprec_record_calibration.bin
+
+# Audio spatializer engine
+# EffectsConfig searches /odm/etc before /vendor/etc, and the stock build ships no
+# /vendor/etc/audio_effects_config.xml at all - this ODM registry is the one audioserver
+# loads, and the only place the AOSP spatializer UUID is registered. It maps
+# de4d6aaf-4e9d-473d-8168-4ce92d50a637 onto libOplusSpatializerAidl.so.
+# Declared per-device rather than in sm8850-common because liboplus_audiox links
+# odm/lib64/libMNN.so and both soundfx factories link odm/lib64/libc++_shared.so - both
+# declared in this file. The common blob namespace does not import this one, so a
+# common-side declaration leaves those two deps unresolvable at soong analysis.
+odm/etc/audio_effects_config.xml
+odm/lib64/liboplus_audiox.so
+odm/lib64/soundfx/libOplusAudioxAidl.so;DISABLE_CHECKELF
+odm/lib64/soundfx/libOplusSpatializerAidl.so;DISABLE_CHECKELF
+odm/lib64/soundfx/liboplusupmixeffect.so
+
+# Audio spatializer room models
+odm/etc/oplusmetaaudio/HP_MOVIE_ANALOG.bin
+odm/etc/oplusmetaaudio/HP_MOVIE_BLUETOOTH.bin
+odm/etc/oplusmetaaudio/HP_MOVIE_DIGITAL.bin
+odm/etc/oplusmetaaudio/HP_MOVIE_GALILEO.bin
+odm/etc/oplusmetaaudio/HP_MUSIC_ANALOG.bin
+odm/etc/oplusmetaaudio/HP_MUSIC_BLUETOOTH.bin
+odm/etc/oplusmetaaudio/HP_MUSIC_DIGITAL.bin
+odm/etc/oplusmetaaudio/HP_MUSIC_GALILEO.bin
+odm/etc/oplusmetaaudio/SPAT_AUDIOX_ROOMMODEL_MOVIE.bin
+odm/etc/oplusmetaaudio/SPAT_AUDIOX_ROOMMODEL_MUSIC.bin
+odm/etc/oplusmetaaudio/SPK_MOVIE_lvl1.bin
+odm/etc/oplusmetaaudio/SPK_MOVIE_lvl10.bin
+odm/etc/oplusmetaaudio/SPK_MOVIE_lvl2.bin
+odm/etc/oplusmetaaudio/SPK_MOVIE_lvl3.bin
+odm/etc/oplusmetaaudio/SPK_MOVIE_lvl4.bin
+odm/etc/oplusmetaaudio/SPK_MOVIE_lvl5.bin
+odm/etc/oplusmetaaudio/SPK_MOVIE_lvl6.bin
+odm/etc/oplusmetaaudio/SPK_MOVIE_lvl7.bin
+odm/etc/oplusmetaaudio/SPK_MOVIE_lvl8.bin
+odm/etc/oplusmetaaudio/SPK_MOVIE_lvl9.bin
+odm/etc/spatializer/HP_MOVIE_ANALOG.bin
+odm/etc/spatializer/HP_MOVIE_BLUETOOTH.bin
+odm/etc/spatializer/HP_MOVIE_DIGITAL.bin
+odm/etc/spatializer/HP_MOVIE_GALILEO.bin
+odm/etc/spatializer/HP_MUSIC_ANALOG.bin
+odm/etc/spatializer/HP_MUSIC_BLUETOOTH.bin
+odm/etc/spatializer/HP_MUSIC_DIGITAL.bin
+odm/etc/spatializer/HP_MUSIC_GALILEO.bin
+odm/etc/spatializer/SPAT_AUDIOX_ROOMMODEL_MOVIE.bin
+odm/etc/spatializer/SPAT_AUDIOX_ROOMMODEL_MOVIE_SPK.bin
+odm/etc/spatializer/SPAT_AUDIOX_ROOMMODEL_MUSIC.bin
+odm/etc/spatializer/SPAT_AUDIOX_ROOMMODEL_MUSIC_SPK.bin
+odm/etc/spatializer/SPK_MOVIE_lvl1.bin
+odm/etc/spatializer/SPK_MOVIE_lvl10.bin
+odm/etc/spatializer/SPK_MOVIE_lvl2.bin
+odm/etc/spatializer/SPK_MOVIE_lvl3.bin
+odm/etc/spatializer/SPK_MOVIE_lvl4.bin
+odm/etc/spatializer/SPK_MOVIE_lvl5.bin
+odm/etc/spatializer/SPK_MOVIE_lvl6.bin
+odm/etc/spatializer/SPK_MOVIE_lvl7.bin
+odm/etc/spatializer/SPK_MOVIE_lvl8.bin
+odm/etc/spatializer/SPK_MOVIE_lvl9.bin
 
 # Camera
 odm/bin/hw/vendor.oplus.hardware.cammidasservice-V1-service
@@ -1458,6 +1518,7 @@ odm/firmware/fastchg/smart_chg_config_table.txt
 # Display configurations
 my_product/vendor/etc/display_apollo_list_AA601_P_7_A0020_dsc_cmd_mode_panel.xml:vendor/etc/display_apollo_list_AA601_P_7_A0020_dsc_cmd_mode_panel.xml
 my_product/vendor/etc/display_apollo_list_AD296_P_3_A0020_dsc_cmd_mode_panel.xml:vendor/etc/display_apollo_list_AD296_P_3_A0020_dsc_cmd_mode_panel.xml
+odm/lib64/libdisplayadfr2minfps_qcom.so
 odm/etc/PanelChaplin/3D-Lut_Center_P3.txt
 odm/etc/PanelChaplin/3D-Lut_Center_sRGB.txt
 odm/etc/PanelChaplin/3D-Lut_Enhance_P3.txt

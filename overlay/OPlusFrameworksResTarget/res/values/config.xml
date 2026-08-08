@@ -318,4 +318,18 @@
          booted.  -->
     <integer name="config_stableDeviceDisplayWidth">1272</integer>
     <integer name="config_stableDeviceDisplayHeight">2772</integer>
+
+    <!-- infiniti charges over VOOC/SVOOC, which the health HAL reports as an
+         ordinary wired charger.  Select the VOOC keyguard wording and point the
+         OEM fast-charger probe at the two oplus_chg battery attributes that the
+         charger driver raises while a VOOC handshake is active:
+           fast_charge  - any OEM fast-charge path (covers SVOOC)
+           voocchg_ing  - VOOC charging in progress
+         Both are unconditional members of the oplus_chg battery attribute group
+         (kernel: vendor/oplus/kernel/charger/v2/oplus_configfs.c) and are
+         labelled for system_server in this device's sepolicy. -->
+    <bool name="config_hasVoocCharger">true</bool>
+    <string name="config_oemFastChargerStatusPath" translatable="false">/sys/class/oplus_chg/battery/fast_charge</string>
+    <string name="config_oemFastChargerStatusPath2" translatable="false">/sys/class/oplus_chg/battery/voocchg_ing</string>
+    <string name="config_oemFastChargerStatusValue" translatable="false">1</string>
 </resources>

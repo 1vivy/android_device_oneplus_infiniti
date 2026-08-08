@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+
+# Only the two OEM fast-charge status attributes are relabelled; the rest of
+# the oplus_chg class keeps its default label so no vendor client loses access.
+genfscon sysfs /class/oplus_chg/battery/fast_charge                     u:object_r:vendor_sysfs_oplus_chg:s0
+genfscon sysfs /devices/virtual/oplus_chg/battery/fast_charge           u:object_r:vendor_sysfs_oplus_chg:s0
+genfscon sysfs /class/oplus_chg/battery/voocchg_ing                     u:object_r:vendor_sysfs_oplus_chg:s0
+genfscon sysfs /devices/virtual/oplus_chg/battery/voocchg_ing           u:object_r:vendor_sysfs_oplus_chg:s0

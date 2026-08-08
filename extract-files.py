@@ -80,6 +80,12 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/lib64/libcamxdumpinforecorder.so',
     ): blob_fixup()
         .replace_needed('libtinyxml2.so', 'libtinyxml2-v36.so'),
+    # NUL-padded to the original 32 bytes; see sm8850-common for the /my_* rationale.
+    'odm/lib64/libdolbyclstc.so': blob_fixup()
+        .binary_regex_replace(
+            rb'/my_product/etc/dolby_vision\.cfg',
+            b'/odm/etc/dolby/dolby_vision.cfg' + b'\0',
+        ),
 }  # fmt: skip
 
 module = ExtractUtilsModule(

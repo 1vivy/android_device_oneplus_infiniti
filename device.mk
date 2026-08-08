@@ -23,6 +23,17 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/display/displayconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4630946903293830803.xml \
     $(LOCAL_PATH)/configs/display/displayconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4630946982335253651.xml
 
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health-service.oplus
+
+$(call soong_config_set,oplus_health,battery_state_of_health_path,/sys/class/oplus_chg/battery/battery_ui_soh)
+$(call soong_config_set,oplus_health,battery_cycle_count_path,/sys/class/oplus_chg/battery/battery_ui_cc)
+
+# Key handler
+PRODUCT_PACKAGES += \
+    KeyHandler
+
 # Keymint
 PRODUCT_PACKAGES += \
     android.hardware.security.keymint3-service.strongbox.nxp \
