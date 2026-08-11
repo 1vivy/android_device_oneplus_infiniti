@@ -40,7 +40,10 @@ PRODUCT_PACKAGES += \
     android.hardware.health-service.oplus
 
 $(call soong_config_set,oplus_health,battery_state_of_health_path,/sys/class/oplus_chg/battery/battery_ui_soh)
-$(call soong_config_set,oplus_health,battery_cycle_count_path,/sys/class/oplus_chg/battery/battery_ui_cc)
+$(call soong_config_set,oplus_health,battery_cycle_count_path,/sys/class/power_supply/battery/cycle_count)
+$(call soong_config_set,oplus_health,battery_full_charge_path,/sys/class/power_supply/battery/charge_full)
+$(call soong_config_set,oplus_health,battery_full_charge_design_capacity_uah_path,/sys/class/power_supply/battery/charge_full_design)
+$(call soong_config_set,oplus_health,battery_full_charge_requires_independent_value,true)
 
 # Plus Key
 PRODUCT_PACKAGES += \
