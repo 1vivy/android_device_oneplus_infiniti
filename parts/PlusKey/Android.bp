@@ -1,0 +1,53 @@
+// Plus Key settings and handler for the OnePlus 15 programmable side button.
+
+android_app {
+    name: "PlusKey",
+
+    defaults: ["SettingsLibDefaults"],
+
+    srcs: ["src/**/*.java"],
+    resource_dirs: ["res"],
+
+    manifest: "AndroidManifest.xml",
+
+    platform_apis: true,
+    certificate: "platform",
+    system_ext_specific: true,
+    privileged: true,
+    privapp_allowlist: "com.oplus.pluskey.xml",
+
+    static_libs: [
+        "androidx.appcompat_appcompat",
+        "androidx.core_core",
+        "androidx.dynamicanimation_dynamicanimation",
+        "androidx.preference_preference",
+        "androidx.recyclerview_recyclerview",
+        "com.google.android.material_material",
+        "SettingsLibPreference",
+    ],
+
+    optimize: {
+        enabled: false,
+    },
+}
+
+android_test {
+    name: "PlusKeyTests",
+
+    srcs: ["tests/src/**/*.java"],
+    resource_dirs: [],
+    manifest: "tests/AndroidManifest.xml",
+    instrumentation_for: "PlusKey",
+
+    certificate: "platform",
+    platform_apis: true,
+    system_ext_specific: true,
+
+    static_libs: [
+        "androidx.test.ext.junit",
+        "androidx.test.rules",
+        "truth",
+    ],
+
+    test_suites: ["device-tests"],
+}

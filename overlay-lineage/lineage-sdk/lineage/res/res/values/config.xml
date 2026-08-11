@@ -5,16 +5,9 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
-    <!-- Device key handler, which gives the Plus Key (scan code 735) its
-         configured short and long press actions. Kept out of sm8850-common
-         because not every commonised device has this key. -->
-    <string-array name="config_deviceKeyHandlerLibs" translatable="false">
-        <item>/system_ext/app/KeyHandler/KeyHandler.apk</item>
-    </string-array>
-
-    <string-array name="config_deviceKeyHandlerClasses" translatable="false">
-        <item>org.lineageos.settings.device.KeyHandler</item>
-    </string-array>
+    <!-- The Plus Key is intercepted by phone-window policy and delivered to
+         the device-specific PlusKey package. Do not also load the generic
+         KeyHandler: two consumers can execute one press twice. -->
 
     <!-- Whether the device supports wireless charging or not -->
     <bool name="config_deviceSupportsWirelessCharging">true</bool>

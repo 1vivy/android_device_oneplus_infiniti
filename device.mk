@@ -42,9 +42,9 @@ PRODUCT_PACKAGES += \
 $(call soong_config_set,oplus_health,battery_state_of_health_path,/sys/class/oplus_chg/battery/battery_ui_soh)
 $(call soong_config_set,oplus_health,battery_cycle_count_path,/sys/class/oplus_chg/battery/battery_ui_cc)
 
-# Key handler
+# Plus Key
 PRODUCT_PACKAGES += \
-    KeyHandler
+    PlusKey
 
 # Keymint
 PRODUCT_PACKAGES += \
@@ -92,7 +92,6 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Telephony
 PRODUCT_PACKAGES += \
-    KeyHandler \
     OplusEsimSwitcher \
     OplusEuicc
 
