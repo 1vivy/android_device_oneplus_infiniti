@@ -4,6 +4,9 @@ ro.product.odm.model=PLK110
 ro.product.odm.name=PLK110
 ro.vendor.oplus.regionmark=CN
 
+# IFAA
+sys.oplus.ifaa.model=ONEPLUS-R24831
+
 # NFC
 persist.vendor.nfc.config_file_name=libnfc-mtp-SN220.conf_24831
 

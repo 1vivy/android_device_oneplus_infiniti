@@ -1,5 +1,11 @@
 import /odm/etc/${ro.boot.prjname}/build.${ro.boot.hardware.revision}.prop
 
+# Provisioning
+ro.vendor.oplus.provision.pki=10
+
+# Widevine
+vendor.wv.oemcrypto.debug.enable_prov40=true
+
 # eSIM
 ro.vendor.oplus.radio.esim.feature=2
 

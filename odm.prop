@@ -1,4 +1,6 @@
-# Regional properties
+# Project properties
+# Mask the common Widevine default so an unknown project resolves unset.
+vendor.wv.oemcrypto.debug.enable_prov40=
 import /odm/etc/${ro.boot.prjname}/build.default.prop
 ro.product.property_source_order=odm,vendor,product,system_ext,system
 
