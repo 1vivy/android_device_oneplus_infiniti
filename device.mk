@@ -33,7 +33,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/display/displayconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4630946982335253651.xml
 
 PRODUCT_PACKAGES += \
-    displaypanelfeature-publisher
+    displaypanelfeature-publisher \
+    vendor.oplus.hardware.displaypanelfeature-service.oplus
 
 # Health
 PRODUCT_PACKAGES += \
