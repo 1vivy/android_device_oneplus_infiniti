@@ -22,13 +22,13 @@
   <feature id="19" name="OemFeature19" direction="set" payload="scalar" handler="compiled-switch:19:OemFeature19" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="20" name="OemFeature20" direction="both" payload="scalar" handler="compiled-switch:20:OemFeature20" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="21" name="OemFeature21" direction="both" payload="scalar" handler="compiled-switch:21:OemFeature21" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
-  <feature id="22" name="DimlayerHbm" direction="both" payload="scalar" handler="compiled-switch:22:DimlayerHbm" producer="typed-client" status="active" displays="primary,secondary" min="0" max="1" />
+  <feature id="22" name="DimlayerHbm" direction="both" payload="scalar" handler="compiled-switch:22:DimlayerHbm" producer="typed-client" status="active" displays="primary,secondary" min="0" max="1" values="0,1" />
   <feature id="23" name="DimlayerBlEnable" direction="both" payload="scalar" handler="compiled-switch:23:DimlayerBlEnable" producer="typed-client" status="active" displays="primary,secondary" min="0" max="1" />
   <feature id="24" name="OemFeature24" direction="set" payload="scalar" handler="compiled-switch:24:OemFeature24" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="25" name="OemFeature25" direction="both" payload="scalar" handler="compiled-switch:25:OemFeature25" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="26" name="OemFeature26" direction="get" payload="scalar" handler="compiled-switch:26:OemFeature26" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="27" name="OemFeature27" direction="both" payload="scalar" handler="compiled-switch:27:OemFeature27" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
-  <feature id="28" name="FpPress" direction="set" payload="scalar" handler="compiled-switch:28:FpPress" producer="typed-client" status="active" displays="primary,secondary" min="0" max="1" />
+  <feature id="28" name="FpPress" direction="set" payload="scalar" handler="compiled-switch:28:FpPress" producer="typed-client" status="active" displays="primary,secondary" min="0" max="1" values="0,1" />
   <feature id="29" name="OemFeature29" direction="both" payload="scalar" handler="compiled-switch:29:OemFeature29" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="30" name="OemFeature30" direction="get" payload="scalar" handler="compiled-switch:30:OemFeature30" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="32" name="OemFeature32" direction="both" payload="scalar" handler="compiled-switch:32:OemFeature32" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
@@ -52,7 +52,7 @@
   <feature id="192" name="OemFeature192" direction="set" payload="scalar" handler="compiled-switch:192:OemFeature192" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="193" name="OemFeature193" direction="both" payload="scalar" handler="compiled-switch:193:OemFeature193" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="194" name="OemFeature194" direction="both" payload="scalar" handler="compiled-switch:194:OemFeature194" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
-  <feature id="195" name="UltraLowPowerAod" direction="both" payload="scalar" handler="compiled-switch:195:UltraLowPowerAod" producer="typed-client" status="active" displays="primary,secondary" min="0" max="1" />
+  <feature id="195" name="UltraLowPowerAod" direction="both" payload="scalar" handler="compiled-switch:195:UltraLowPowerAod" producer="typed-client" status="active" displays="primary,secondary" min="0" max="1" values="0,1" />
   <feature id="197" name="OemFeature197" direction="set" payload="scalar" handler="compiled-switch:197:OemFeature197" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="198" name="OemFeature198" direction="get" payload="scalar" handler="compiled-switch:198:OemFeature198" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="199" name="PwmTurbo" direction="both" payload="scalar" handler="compiled-switch:199:PwmTurbo" producer="typed-client" status="active" displays="primary,secondary" min="0" max="1" />
@@ -66,7 +66,7 @@
   <feature id="214" name="OemFeature214" direction="get" payload="scalar" handler="compiled-switch:214:OemFeature214" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="215" name="OemFeature215" direction="set" payload="scalar" handler="compiled-switch:215:OemFeature215" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="216" name="OemFeature216" direction="both" payload="scalar" handler="compiled-switch:216:OemFeature216" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
-  <feature id="217" name="OemFeature217" direction="both" payload="scalar" handler="compiled-switch:217:OemFeature217" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
+  <feature id="217" name="LongruiAodState" direction="both" payload="scalar" handler="compiled-switch:217:LongruiAodState" producer="typed-client" status="active" displays="primary,secondary" min="0" max="11" values="0,2,3,4,10,11" />
   <feature id="218" name="OemFeature218" direction="both" payload="scalar" handler="compiled-switch:218:OemFeature218" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="219" name="OemFeature219" direction="set" payload="scalar" handler="compiled-switch:219:OemFeature219" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="220" name="OemFeature220" direction="set" payload="scalar" handler="compiled-switch:220:OemFeature220" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
@@ -101,7 +101,7 @@
   <feature id="259" name="OemFeature259" direction="get" payload="scalar" handler="compiled-switch:259:OemFeature259" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="260" name="OemFeature260" direction="both" payload="scalar" handler="compiled-switch:260:OemFeature260" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="261" name="OemFeature261" direction="set" payload="scalar" handler="compiled-switch:261:OemFeature261" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
-  <feature id="263" name="LowPwmAod" direction="both" payload="scalar" handler="compiled-switch:263:LowPwmAod" producer="typed-client" status="active" displays="primary,secondary" min="0" max="1" />
+  <feature id="263" name="LowPwmAod" direction="both" payload="scalar" handler="compiled-switch:263:LowPwmAod" producer="typed-client" status="active" displays="primary,secondary" min="0" max="1" values="0,1" />
   <feature id="264" name="OemFeature264" direction="get" payload="scalar" handler="compiled-switch:264:OemFeature264" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="265" name="OemFeature265" direction="set" payload="scalar" handler="compiled-switch:265:OemFeature265" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
 </displayPanelFeatures>
