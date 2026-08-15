@@ -101,7 +101,7 @@
   <feature id="259" name="OemFeature259" direction="get" payload="scalar" handler="compiled-switch:259:OemFeature259" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="260" name="OemFeature260" direction="both" payload="scalar" handler="compiled-switch:260:OemFeature260" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="261" name="OemFeature261" direction="set" payload="scalar" handler="compiled-switch:261:OemFeature261" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
-  <feature id="263" name="LowPwmAod" direction="set" payload="scalar" handler="compiled-switch:263:LowPwmAod" producer="typed-client" status="active" displays="primary,secondary" min="0" max="1" />
+  <feature id="263" name="LowPwmAod" direction="both" payload="scalar" handler="compiled-switch:263:LowPwmAod" producer="typed-client" status="active" displays="primary,secondary" min="0" max="1" />
   <feature id="264" name="OemFeature264" direction="get" payload="scalar" handler="compiled-switch:264:OemFeature264" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
   <feature id="265" name="OemFeature265" direction="set" payload="scalar" handler="compiled-switch:265:OemFeature265" producer="unowned" status="reserved" displays="primary,secondary" min="-2147483648" max="2147483647" />
 </displayPanelFeatures>
