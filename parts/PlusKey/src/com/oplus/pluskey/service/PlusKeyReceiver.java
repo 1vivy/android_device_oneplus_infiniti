@@ -2,15 +2,18 @@ package com.oplus.pluskey.service;
 
 import android.Manifest;
 import android.app.ActivityManager;
-import android.content.ComponentName;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.hardware.input.InputManager;
 import android.os.PowerManager;
 import android.os.SystemClock;
+import android.os.UserManager;
+import android.provider.Settings.Global;
 import android.util.Log;
 import android.view.InputDevice;
 import android.view.KeyCharacterMap;
@@ -23,17 +26,21 @@ import com.oplus.pluskey.actions.ActionDispatcher;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Receives Plus Key broadcasts from the patched PhoneWindowManager.
- */
+/** Receives Plus Key broadcasts from the patched PhoneWindowManager. */
 public class PlusKeyReceiver extends BroadcastReceiver {
 
     public static final String ACTION_SHORT_PRESS = "com.oplus.pluskey.SHORT_PRESS";
     public static final String ACTION_LONG_PRESS = "com.oplus.pluskey.LONG_PRESS";
-    public static final String ACTION_CAMERA_TRIGGER_DOWN =
-            "com.oplus.pluskey.CAMERA_TRIGGER_DOWN";
-    public static final String ACTION_CAMERA_TRIGGER_UP =
-            "com.oplus.pluskey.CAMERA_TRIGGER_UP";
+    public static final String ACTION_CAMERA_TRIGGER_DOWN = "com.oplus.pluskey.CAMERA_TRIGGER_DOWN";
+    public static final String ACTION_CAMERA_TRIGGER_UP = "com.oplus.pluskey.CAMERA_TRIGGER_UP";
+    public static final String EXTRA_SEQUENCE_ID = "com.oplus.pluskey.extra.SEQUENCE_ID";
+    public static final String EXTRA_USER_ID = "com.oplus.pluskey.extra.USER_ID";
+    public static final String EXTRA_KEYGUARD_LOCKED = "com.oplus.pluskey.extra.KEYGUARD_LOCKED";
+
+    private static final String LEDGER_PREFS = "pluskey_gesture_ledger";
+    private static final String PREF_WRITER_SESSION = "writer_session";
+    private static final String PREF_LAST_SEQUENCE = "last_sequence";
+    private static final int INVALID_USER_ID = -10000;
 
     private static boolean sCameraKeyDown;
     private static long sSuppressGesturesUntil;
@@ -47,36 +54,76 @@ public class PlusKeyReceiver extends BroadcastReceiver {
         boolean cameraUp = ACTION_CAMERA_TRIGGER_UP.equals(action);
         if (!longPress && !shortPress && !cameraDown && !cameraUp) return;
 
+        GestureContract.Gesture gesture = readGesture(intent);
+        int receivingUserId = ctx.getUserId();
+        if (!GestureContract.isValidForUser(gesture, receivingUserId)) {
+            Log.w(Constants.TAG, "ignoring gesture with invalid framework context");
+            return;
+        }
+
         if (cameraDown || cameraUp) {
             handleCameraTriggerEvent(ctx, cameraDown);
             return;
         }
 
+        int actionId = Settings.getAction(ctx, longPress);
+        Log.i(
+                Constants.TAG,
+                (longPress ? "long-press" : "short-press")
+                        + " action="
+                        + Constants.actionName(actionId));
+
+        UserManager userManager = ctx.getSystemService(UserManager.class);
+        boolean userUnlocked = userManager == null || userManager.isUserUnlocked();
+        int bootCount =
+                Global.getInt(ctx.getContentResolver(), Global.BOOT_COUNT, Integer.MIN_VALUE);
+        long writerSession =
+                bootCount == Integer.MIN_VALUE ? GestureContract.NO_SESSION : bootCount;
+        GestureContract.Result result =
+                new GestureContract(new PreferenceStore(ctx))
+                        .handle(
+                                gesture,
+                                receivingUserId,
+                                writerSession,
+                                userUnlocked,
+                                actionId,
+                                () -> executeAction(ctx, actionId, longPress));
+        Log.i(Constants.TAG, "gesture sequence=" + gesture.sequenceId + " result=" + result);
+    }
+
+    private GestureContract.Gesture readGesture(Intent intent) {
+        if (!intent.hasExtra(EXTRA_SEQUENCE_ID)
+                || !intent.hasExtra(EXTRA_USER_ID)
+                || !intent.hasExtra(EXTRA_KEYGUARD_LOCKED)) {
+            return null;
+        }
+        return new GestureContract.Gesture(
+                intent.getLongExtra(EXTRA_SEQUENCE_ID, 0),
+                intent.getIntExtra(EXTRA_USER_ID, INVALID_USER_ID),
+                intent.getBooleanExtra(EXTRA_KEYGUARD_LOCKED, false));
+    }
+
+    private void executeAction(Context ctx, int actionId, boolean longPress) {
         if (sCameraKeyDown || SystemClock.uptimeMillis() < sSuppressGesturesUntil) {
             Log.i(Constants.TAG, "gesture suppressed by camera trigger");
             return;
         }
-
         if (!longPress && Settings.isShortPressScreenOnOnly(ctx) && !isScreenOn(ctx)) {
             Log.i(Constants.TAG, "short-press ignored while screen is off");
             return;
         }
 
         AssistantRoleClearer.clearOnce(ctx);
-        int actionId = Settings.getAction(ctx, longPress);
-        Log.i(Constants.TAG, (longPress ? "long-press" : "short-press")
-                + " action=" + Constants.actionName(actionId));
-
-        // First-run: user has never picked an action. Open the picker
-        // instead of silently doing nothing.
         if (actionId == Constants.ACTION_UNSET) {
-            Intent settings = new Intent("com.oplus.pluskey.SETTINGS")
-                    .setPackage(ctx.getPackageName())
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            // First-run is an explicit unlocked-only action. Reinstall clears the package-private
+            // sequence ledger; the per-user action selection remains in Settings.Secure.
+            Intent settings =
+                    new Intent("com.oplus.pluskey.SETTINGS")
+                            .setPackage(ctx.getPackageName())
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             ctx.startActivity(settings);
             return;
         }
-
         new ActionDispatcher(ctx).dispatch(actionId);
     }
 
@@ -147,14 +194,45 @@ public class PlusKeyReceiver extends BroadcastReceiver {
         if (im == null) return false;
 
         long now = SystemClock.uptimeMillis();
-        return im.injectInputEvent(cameraKey(now, action),
-                InputManager.INJECT_INPUT_EVENT_MODE_ASYNC);
+        return im.injectInputEvent(
+                cameraKey(now, action), InputManager.INJECT_INPUT_EVENT_MODE_ASYNC);
     }
 
     private KeyEvent cameraKey(long eventTime, int action) {
-        return new KeyEvent(eventTime, eventTime, action, KeyEvent.KEYCODE_CAMERA,
-                0, 0, KeyCharacterMap.VIRTUAL_KEYBOARD, 0,
+        return new KeyEvent(
+                eventTime,
+                eventTime,
+                action,
+                KeyEvent.KEYCODE_CAMERA,
+                0,
+                0,
+                KeyCharacterMap.VIRTUAL_KEYBOARD,
+                0,
                 KeyEvent.FLAG_FROM_SYSTEM | KeyEvent.FLAG_VIRTUAL_HARD_KEY,
                 InputDevice.SOURCE_KEYBOARD);
+    }
+
+    private static final class PreferenceStore implements GestureContract.Store {
+        private final SharedPreferences mPreferences;
+
+        PreferenceStore(Context context) {
+            mPreferences = context.getSharedPreferences(LEDGER_PREFS, Context.MODE_PRIVATE);
+        }
+
+        @Override
+        public GestureContract.State read() {
+            return new GestureContract.State(
+                    mPreferences.getLong(PREF_WRITER_SESSION, GestureContract.NO_SESSION),
+                    mPreferences.getLong(PREF_LAST_SEQUENCE, 0));
+        }
+
+        @Override
+        public boolean write(long writerSession, long sequenceId) {
+            return mPreferences
+                    .edit()
+                    .putLong(PREF_WRITER_SESSION, writerSession)
+                    .putLong(PREF_LAST_SEQUENCE, sequenceId)
+                    .commit();
+        }
     }
 }
