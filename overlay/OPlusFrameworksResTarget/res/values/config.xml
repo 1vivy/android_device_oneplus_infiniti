@@ -25,8 +25,8 @@
     <string name="config_displayWhiteBalanceColorTemperatureSensorName"
             translatable="false">qti.sensor.rgb</string>
 
-    <!-- Default remains off; wave-4 validates sensor units and runtime native primaries. -->
-    <bool name="config_displayWhiteBalanceAvailable">true</bool>
+    <!-- Keep DWB hidden until the panel primaries and nominal white are measured. -->
+    <bool name="config_displayWhiteBalanceAvailable">false</bool>
     <bool name="config_displayWhiteBalanceEnabledDefault">false</bool>
 
     <!-- Minimum screen brightness setting allowed by power manager.
