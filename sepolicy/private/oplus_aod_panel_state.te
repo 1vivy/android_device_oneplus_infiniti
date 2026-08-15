@@ -1,0 +1,13 @@
+type oplus_aod_panel_state, domain, coredomain;
+type oplus_aod_panel_state_exec, system_file_type, exec_type, file_type;
+type oplus_aod_panel_state_service, service_manager_type;
+
+init_daemon_domain(oplus_aod_panel_state)
+binder_use(oplus_aod_panel_state)
+add_service(oplus_aod_panel_state, oplus_aod_panel_state_service)
+hal_client_domain(oplus_aod_panel_state, vendor_hal_oplus_displaypanelfeature)
+
+allow system_app oplus_aod_panel_state_service:service_manager find;
+binder_call(system_app, oplus_aod_panel_state)
+
+r_dir_file(oplus_aod_panel_state, vendor_configs_file)

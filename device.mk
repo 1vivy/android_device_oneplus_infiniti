@@ -10,6 +10,7 @@ PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
 
 # AOD
 PRODUCT_PACKAGES += \
+    oplus_aod_panel_state \
     oplus_ulp_aod
 
 # Audio
