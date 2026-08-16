@@ -5,8 +5,5 @@
 #
 
 ifeq ($(TARGET_DEVICE),infiniti)
-infiniti_build_manifest_sentinel := $(PRODUCT_OUT)/.build-manifest-source-state
-$(INSTALLED_BUILD_MANIFEST_XML_TARGET): $(infiniti_build_manifest_sentinel)
-$(infiniti_build_manifest_sentinel):
-	@:
+$(INSTALLED_BUILD_MANIFEST_XML_TARGET): $(BUILD_DATETIME_FILE)
 endif

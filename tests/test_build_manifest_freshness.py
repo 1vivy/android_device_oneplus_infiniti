@@ -4,85 +4,64 @@ from pathlib import Path
 
 import pytest
 
-from tests.verify_build_manifest_ninja import verify_query
+from tests.verify_build_manifest_ninja import verify_makefile, verify_query
 
 ROOT = Path(__file__).resolve().parent.parent
 
 
-def test_sentinel_rule_has_a_recipe() -> None:
-    lines = (ROOT / "Android.mk").read_text(encoding="utf-8").splitlines()
-    rule = lines.index("$(infiniti_build_manifest_sentinel):")
-
-    assert lines[rule + 1].startswith("\t")
+def test_makefile_uses_real_build_datetime_input() -> None:
+    verify_makefile((ROOT / "Android.mk").read_text(encoding="utf-8"))
 
 
-def test_generated_edge_depends_on_absent_real_sentinel(tmp_path: Path) -> None:
-    sentinel = tmp_path / ".build-manifest-source-state"
-    manifest_query = (
+def test_generated_edge_depends_on_build_datetime(tmp_path: Path) -> None:
+    build_datetime = tmp_path / "build_date.txt"
+    build_datetime.touch()
+    query = (
         "out/product/etc/build-manifest.xml:\n"
         "  input: rule\n"
-        f"    {sentinel}\n"
+        f"    {build_datetime}\n"
         "  outputs:\n"
         "    out/product.img\n"
     )
-    sentinel_query = f"{sentinel}:\n  input: rule\n  outputs:\n"
 
-    verify_query(manifest_query, sentinel_query, sentinel)
+    verify_query(query, build_datetime)
 
 
-def test_generated_edge_without_sentinel_refuses(tmp_path: Path) -> None:
-    sentinel = tmp_path / ".build-manifest-source-state"
+def test_generated_edge_without_build_datetime_refuses(tmp_path: Path) -> None:
+    build_datetime = tmp_path / "build_date.txt"
+    build_datetime.touch()
 
     with pytest.raises(ValueError):
         verify_query(
             "out/product/etc/build-manifest.xml:\n  input: rule\n",
-            f"{sentinel}:\n  input: rule\n",
-            sentinel,
+            build_datetime,
         )
 
 
-def test_sentinel_listed_only_as_output_refuses(tmp_path: Path) -> None:
-    sentinel = tmp_path / ".build-manifest-source-state"
+def test_build_datetime_listed_only_as_output_refuses(tmp_path: Path) -> None:
+    build_datetime = tmp_path / "build_date.txt"
+    build_datetime.touch()
     query = "\n".join(
         (
             "out/product/etc/build-manifest.xml:",
             "  input: rule",
             "    out/other-input",
             "  outputs:",
-            f"    {sentinel}",
+            f"    {build_datetime}",
         )
     )
 
     with pytest.raises(ValueError):
-        verify_query(query, f"{sentinel}:\n  input: rule\n", sentinel)
+        verify_query(query, build_datetime)
 
 
-def test_phony_sentinel_edge_refuses(tmp_path: Path) -> None:
-    sentinel = tmp_path / ".build-manifest-source-state"
-    manifest_query = (
+def test_missing_build_datetime_refuses(tmp_path: Path) -> None:
+    build_datetime = tmp_path / "build_date.txt"
+    query = (
         "out/product/etc/build-manifest.xml:\n"
         "  input: rule\n"
-        f"    {sentinel}\n"
+        f"    {build_datetime}\n"
     )
-    sentinel_query = f"{sentinel}:\n  input: phony\n"
 
     with pytest.raises(ValueError):
-        verify_query(manifest_query, sentinel_query, sentinel)
-
-
-def test_materialized_sentinel_refuses(tmp_path: Path) -> None:
-    sentinel = tmp_path / ".build-manifest-source-state"
-    sentinel.touch()
-
-    with pytest.raises(ValueError):
-        verify_query(
-            "\n".join(
-                (
-                    "out/product/etc/build-manifest.xml:",
-                    "  input: rule",
-                    f"    {sentinel}",
-                )
-            ),
-            f"{sentinel}:\n  input: rule\n",
-            sentinel,
-        )
+        verify_query(query, build_datetime)
