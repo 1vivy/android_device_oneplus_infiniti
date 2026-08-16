@@ -30,6 +30,22 @@ def test_generated_edge_without_sentinel_refuses(tmp_path: Path) -> None:
         )
 
 
+def test_sentinel_listed_only_as_output_refuses(tmp_path: Path) -> None:
+    sentinel = tmp_path / ".build-manifest-source-state"
+    query = "\n".join(
+        (
+            "out/product/etc/build-manifest.xml:",
+            "  input: rule",
+            "    out/other-input",
+            "  outputs:",
+            f"    {sentinel}",
+        )
+    )
+
+    with pytest.raises(ValueError, match="missing sentinel input"):
+        verify_query(query, sentinel)
+
+
 def test_materialized_sentinel_refuses(tmp_path: Path) -> None:
     sentinel = tmp_path / ".build-manifest-source-state"
     sentinel.touch()

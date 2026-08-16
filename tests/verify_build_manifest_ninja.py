@@ -7,10 +7,24 @@ from typing import cast
 
 
 def verify_query(query: str, sentinel: Path) -> None:
-    if str(sentinel) not in query.splitlines():
-        indented = f"    {sentinel}"
-        if indented not in query.splitlines():
-            raise ValueError(f"generated build-manifest edge is missing sentinel input {sentinel}")
+    lines = query.splitlines()
+    input_index = next(
+        (index for index, line in enumerate(lines) if line.startswith("  input:")),
+        None,
+    )
+    if input_index is None:
+        raise ValueError("generated build-manifest edge has no input section")
+    output_index = next(
+        (
+            index
+            for index, line in enumerate(lines[input_index + 1 :], input_index + 1)
+            if line.startswith("  outputs:")
+        ),
+        len(lines),
+    )
+    inputs = {line.strip() for line in lines[input_index + 1 : output_index]}
+    if str(sentinel) not in inputs:
+        raise ValueError(f"generated build-manifest edge is missing sentinel input {sentinel}")
     if sentinel.exists():
         raise ValueError(f"build-manifest sentinel must remain absent: {sentinel}")
 
