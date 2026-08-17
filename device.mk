@@ -110,6 +110,7 @@ $(call soong_config_set_bool,OPLUS_LINEAGE_TOUCH_HAL,ENABLE_GM,true)
 
 # Vibrator
 PRODUCT_PACKAGES += \
+    OplusVibratorStyle \
     vendor.qti.hardware.vibrator.service.oplus
 
 $(call soong_config_set_bool,OPLUS_LINEAGE_VIBRATOR_HAL,USE_EFFECT_STREAM,true)
